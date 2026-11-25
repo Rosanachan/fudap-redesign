@@ -1,106 +1,310 @@
-export default function Donaciones({ actions }) {
-  const { navigateTo, handleDonate, selectDonate, clearDonateSelection } = actions;
+
+export default function Donaciones({ actions = {} }) {
+  const {
+    navigateTo,
+    handleDonate,
+    selectDonate,
+    clearDonateSelection,
+  } = actions;
+
+  const irAInicio = () => {
+    if (typeof navigateTo === "function") {
+      navigateTo("inicio");
+    }
+  };
+
+  const beneficios = [
+    {
+      titulo: "Programas de rehabilitación",
+      descripcion: "Recursos para el Centro y actividades terapéuticas.",
+    },
+    {
+      titulo: "Inclusión laboral y talleres",
+      descripcion: "Materiales, capacitaciones y acompañamiento.",
+    },
+    {
+      titulo: "Apoyo a familias",
+      descripcion: "Espacios grupales y orientación.",
+    },
+  ];
+
+  const montos = [2000, 5000, 10000];
+
   return (
-    <>
-<section className="bg-fudap-50 border-b border-fudap-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-          <nav className="text-sm text-fudap-500 mb-4" aria-label="Breadcrumb">
-            <button onClick={() => navigateTo('inicio')} className="hover:text-fudap-700">Inicio</button>
-            <span className="mx-2">/</span>
-            <span className="text-fudap-700">Participá</span>
-            <span className="mx-2">/</span>
-            <span className="text-fudap-800 font-medium">Donaciones</span>
+    <main className="donaciones-page">
+      <section className="donaciones-hero">
+        <div className="donaciones-container">
+          <nav className="donaciones-breadcrumb" aria-label="Ruta de navegación">
+            <button type="button" onClick={irAInicio}>
+              Inicio
+            </button>
+            <span aria-hidden="true">/</span>
+            <span>Participá</span>
+            <span aria-hidden="true">/</span>
+            <span className="donaciones-breadcrumb-current">
+              Donaciones
+            </span>
           </nav>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-fudap-900 mb-4">Donaciones</h1>
-          <p className="text-lg text-fudap-600 max-w-2xl">Tu aporte sostiene programas de rehabilitación, materiales, talleres y el trabajo del equipo.</p>
+
+          <div className="donaciones-hero-content">
+            <span className="donaciones-eyebrow">
+              Tu aporte importa
+            </span>
+            <h1>Donaciones</h1>
+            <p>
+              Tu aporte ayuda a sostener programas de rehabilitación,
+              materiales, talleres y el trabajo del equipo.
+            </p>
+          </div>
+          <span className="donaciones-hero-decoration" aria-hidden="true" />
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="font-display text-2xl font-bold text-fudap-900 mb-4">¿En qué se usa tu donación?</h2>
-              <ul className="space-y-4 mb-8">
-                <li className="flex gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-fudap-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-fudap-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                  </span>
-                  <div>
-                    <p className="font-medium text-fudap-800">Programas de rehabilitación</p>
-                    <p className="text-sm text-fudap-600">Recursos para el Centro y actividades terapéuticas.</p>
-                  </div>
-                </li>
-                <li className="flex gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-fudap-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-fudap-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                  </span>
-                  <div>
-                    <p className="font-medium text-fudap-800">Inclusión laboral y talleres</p>
-                    <p className="text-sm text-fudap-600">Materiales, capacitaciones y acompañamiento.</p>
-                  </div>
-                </li>
-                <li className="flex gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-fudap-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <svg className="w-4 h-4 text-fudap-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/></svg>
-                  </span>
-                  <div>
-                    <p className="font-medium text-fudap-800">Apoyo a familias</p>
-                    <p className="text-sm text-fudap-600">Espacios grupales y orientación.</p>
-                  </div>
-                </li>
-              </ul>
-              <div className="bg-fudap-50 rounded-xl p-5 border border-fudap-100">
-                <h3 className="font-semibold text-fudap-800 mb-2">Otras formas de donar</h3>
-                <p className="text-sm text-fudap-600 mb-2">Transferencia bancaria / CBU: <strong>[Completar datos bancarios oficiales]</strong></p>
-                <p className="text-sm text-fudap-600">Donaciones en especie: consultar por Contacto.</p>
-                <p className="text-xs text-fudap-400 mt-3">FUDAP preparará la vinculación a plataforma externa de pagos (Mercado Pago, PayPal u otra).</p>
+      <section className="donaciones-main-section">
+        <div className="donaciones-container">
+          <div className="donaciones-layout">
+            <div className="donaciones-info">
+              <span className="donaciones-eyebrow">
+                ¿Cómo nos ayudás?
+              </span>
+              <h2>¿En qué se usa tu donación?</h2>
+              <p className="donaciones-intro">
+                Cada aporte puede contribuir al sostenimiento de las
+                actividades y los programas de la institución.
+              </p>
+
+              <div className="donaciones-benefits">
+                {beneficios.map((beneficio) => (
+                  <article
+                    className="donaciones-benefit"
+                    key={beneficio.titulo}
+                  >
+                    <span
+                      className="donaciones-check"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="m5 12 4 4L19 6" />
+                      </svg>
+                    </span>
+                    <div>
+                      <h3>{beneficio.titulo}</h3>
+                      <p>{beneficio.descripcion}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="donaciones-other-ways">
+                <span className="donaciones-other-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 10h18M7 15h3" />
+                  </svg>
+                </span>
+                <h3>Otras formas de donar</h3>
+                <p>
+                  <strong>Transferencia bancaria / CBU:</strong>{" "}
+                  [Completar datos bancarios oficiales].
+                </p>
+                <p>
+                  <strong>Donaciones en especie:</strong> consultá por
+                  los canales de contacto de FUDAP.
+                </p>
+                <p className="donaciones-note">
+                  Los datos de pago y las vías de recepción deben ser
+                  confirmados por la institución.
+                </p>
+                <button
+                  type="button"
+                  className="donaciones-text-link"
+                  onClick={() => {
+                    if (typeof navigateTo === "function") {
+                      navigateTo("contacto");
+                    }
+                  }}
+                >
+                  Consultar otras formas de colaborar
+                  <span aria-hidden="true"> →</span>
+                </button>
               </div>
             </div>
 
-            {/* Donation widget mock */}
-            <div className="bg-sand-50 rounded-2xl border border-fudap-100 p-6 md:p-8 shadow-card">
-              <h2 className="font-display text-xl font-bold text-fudap-900 mb-1">Doná ahora</h2>
-              <p className="text-sm text-fudap-500 mb-6">Prototipo de interfaz — listo para vincular pasarela de pago</p>
-              
-              <p className="text-sm font-medium text-fudap-700 mb-3">Monto (ARS)</p>
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <button type="button" onClick={(e) => selectDonate(e.currentTarget, 2000)} className="donate-option focus-ring border-2 border-fudap-200 rounded-xl py-3 text-sm font-semibold text-fudap-800 hover:border-fudap-400 transition-colors">$ 2.000</button>
-                <button type="button" onClick={(e) => selectDonate(e.currentTarget, 5000)} className="donate-option selected focus-ring border-2 border-fudap-200 rounded-xl py-3 text-sm font-semibold text-fudap-800 hover:border-fudap-400 transition-colors">$ 5.000</button>
-                <button type="button" onClick={(e) => selectDonate(e.currentTarget, 10000)} className="donate-option focus-ring border-2 border-fudap-200 rounded-xl py-3 text-sm font-semibold text-fudap-800 hover:border-fudap-400 transition-colors">$ 10.000</button>
-              </div>
-              <div className="mb-4">
-                <label htmlFor="donate-custom" className="block text-sm text-fudap-600 mb-1">Otro monto</label>
-                <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-fudap-500 text-sm">$</span>
-                  <input type="number" id="donate-custom" min="100" className="form-input focus-ring w-full pl-8 pr-4 py-2.5 rounded-xl border border-fudap-200 bg-white text-sm" placeholder="Monto personalizado" onInput={clearDonateSelection} />
+            <div className="donaciones-widget">
+              <div className="donaciones-widget-heading">
+                <span className="donaciones-widget-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                  </svg>
+                </span>
+                <div>
+                  <h2>Doná ahora</h2>
+                  <p>Elegí cómo querés colaborar</p>
                 </div>
               </div>
-              <div className="mb-6">
-                <p className="text-sm font-medium text-fudap-700 mb-2">Frecuencia</p>
-                <div className="flex gap-2">
-                  <label className="flex-1 cursor-pointer">
-                    <input type="radio" name="freq" value="once" checked className="sr-only peer" />
-                    <span className="block text-center border-2 border-fudap-200 peer-checked:border-fudap-600 peer-checked:bg-fudap-50 rounded-xl py-2.5 text-sm font-medium text-fudap-800 transition-colors">Única vez</span>
+
+              <div className="donaciones-prototype-note">
+                Prototipo de interfaz. El pago todavía debe vincularse
+                con una plataforma autorizada por FUDAP.
+              </div>
+
+              <fieldset className="donaciones-fieldset">
+                <legend>Elegí un monto (ARS)</legend>
+                <div className="donaciones-amounts">
+                  {montos.map((monto) => (
+                    <button
+                      key={monto}
+                      type="button"
+                      className={`donaciones-amount ${
+                        monto === 5000 ? "selected" : ""
+                      }`}
+                      onClick={(event) => {
+                        if (typeof selectDonate === "function") {
+                          selectDonate(event.currentTarget, monto);
+                        }
+                      }}
+                      aria-label={`Donar ${monto.toLocaleString("es-AR")} pesos`}
+                    >
+                      $ {monto.toLocaleString("es-AR")}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div className="donaciones-custom-field">
+                <label htmlFor="donate-custom">Otro monto</label>
+                <div className="donaciones-input-wrap">
+                  <span aria-hidden="true">$</span>
+                  <input
+                    type="number"
+                    id="donate-custom"
+                    name="customAmount"
+                    min="100"
+                    step="1"
+                    placeholder="Ingresá el monto"
+                    onInput={(event) => {
+                      if (typeof clearDonateSelection === "function") {
+                        clearDonateSelection(event);
+                      }
+                    }}
+                  />
+                </div>
+                <p className="donaciones-field-hint">
+                  El monto mínimo sugerido es de $ 100.
+                </p>
+              </div>
+
+              <fieldset className="donaciones-fieldset donaciones-frequency">
+                <legend>Frecuencia de la donación</legend>
+                <div className="donaciones-frequency-options">
+                  <label className="donaciones-frequency-option">
+                    <input
+                      type="radio"
+                      name="freq"
+                      value="once"
+                      defaultChecked
+                    />
+                    <span>Única vez</span>
                   </label>
-                  <label className="flex-1 cursor-pointer">
-                    <input type="radio" name="freq" value="monthly" className="sr-only peer" />
-                    <span className="block text-center border-2 border-fudap-200 peer-checked:border-fudap-600 peer-checked:bg-fudap-50 rounded-xl py-2.5 text-sm font-medium text-fudap-800 transition-colors">Mensual</span>
+                  <label className="donaciones-frequency-option">
+                    <input
+                      type="radio"
+                      name="freq"
+                      value="monthly"
+                    />
+                    <span>Mensual</span>
                   </label>
                 </div>
-              </div>
-              <button type="button" onClick={handleDonate} className="btn-primary focus-ring w-full text-white font-semibold py-3.5 rounded-full text-sm mb-3">
-                Continuar al pago seguro
+              </fieldset>
+
+              <button
+                type="button"
+                className="donaciones-submit"
+                onClick={handleDonate}
+              >
+                Continuar al pago
+                <span aria-hidden="true"> →</span>
               </button>
-              <p id="donate-msg" className="hidden text-sm text-center text-fudap-600 bg-fudap-50 rounded-lg py-2 mb-3">Redirección a plataforma de pago (prototipo). Aquí se vincula la URL externa.</p>
-              <p className="text-[11px] text-fudap-400 text-center flex items-center justify-center gap-1">
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                Pago seguro · [Pasarela a definir por FUDAP]
+
+              <p
+                id="donate-msg"
+                className="donaciones-payment-message hidden"
+                role="status"
+                aria-live="polite"
+              >
+                Redirección a plataforma de pago (prototipo). Aquí se
+                vinculará la URL externa.
               </p>
+
+              <div className="donaciones-secure-note">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <span>
+                  Pasarela de pago pendiente de definición por FUDAP.
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </section>
-    </>
+
+      <section className="donaciones-cta">
+        <div className="donaciones-container donaciones-cta-inner">
+          <div>
+            <span className="donaciones-eyebrow">
+              También podés participar
+            </span>
+            <h2>Hay muchas formas de colaborar</h2>
+            <p>
+              Tu tiempo, tus conocimientos y tu compromiso también pueden
+              hacer una diferencia.
+            </p>
+          </div>
+          <button
+            type="button"
+            className="donaciones-cta-button"
+            onClick={() => {
+              if (typeof navigateTo === "function") {
+                navigateTo("voluntariado");
+              }
+            }}
+          >
+            Conocé el voluntariado
+            <span aria-hidden="true"> →</span>
+          </button>
+        </div>
+      </section>
+    </main>
   );
 }

@@ -1,63 +1,167 @@
+
 export default function Proyectos({ actions }) {
   const { navigateTo } = actions;
+
+  const proyectos = [
+    {
+      id: 'proyecto-1',
+      estado: 'En curso',
+      titulo: '[Nombre del proyecto]',
+      descripcion:
+        'Descripción pendiente de completar con los objetivos, las actividades y la población destinataria del proyecto.',
+      etiquetas: ['Rehabilitación', 'Comunidad'],
+      imagen:
+        'https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80',
+      alt: 'Imagen ilustrativa de personas trabajando en equipo',
+      color: 'proyecto-turquesa',
+    },
+    {
+      id: 'proyecto-2',
+      estado: 'En curso',
+      titulo: '[Nombre del proyecto]',
+      descripcion:
+        'Completar con información sobre iniciativas, programas especiales, convenios o alianzas institucionales.',
+      etiquetas: ['Inserción laboral'],
+      imagen:
+        'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80',
+      alt: 'Imagen ilustrativa de un grupo de personas reunidas',
+      color: 'proyecto-verde',
+    },
+    {
+      id: 'proyecto-3',
+      estado: 'Archivo',
+      titulo: '[Nombre del proyecto histórico]',
+      descripcion:
+        'Espacio para documentar iniciativas anteriores, talleres y actividades pasadas, conservando la memoria institucional.',
+      etiquetas: ['Archivo histórico'],
+      imagen: null,
+      alt: '',
+      color: 'proyecto-coral',
+    },
+  ];
+
   return (
-    <>
-<section className="bg-fudap-50 border-b border-fudap-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-          <nav className="text-sm text-fudap-500 mb-4" aria-label="Breadcrumb">
-            <button onClick={() => navigateTo('inicio')} className="hover:text-fudap-700">Inicio</button>
-            <span className="mx-2">/</span>
-            <span className="text-fudap-700">FUDAP</span>
-            <span className="mx-2">/</span>
-            <span className="text-fudap-800 font-medium">Proyectos</span>
+    <main className="proyectos-page">
+      <section className="proyectos-intro">
+        <div className="proyectos-container">
+          <nav className="proyectos-breadcrumb" aria-label="Ruta de navegación">
+            <button onClick={() => navigateTo('inicio')}>Inicio</button>
+            <span aria-hidden="true">/</span>
+            <span>FUDAP</span>
+            <span aria-hidden="true">/</span>
+            <span className="proyectos-current">Proyectos</span>
           </nav>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-fudap-900 mb-4">Proyectos</h1>
-          <p className="text-lg text-fudap-600 max-w-2xl">Iniciativas y líneas de trabajo que amplían el alcance de nuestros programas.</p>
+
+          <span className="proyectos-eyebrow">Iniciativas y programas</span>
+          <h1>Nuestros proyectos</h1>
+          <p>
+            Conocé las iniciativas y líneas de trabajo que buscan ampliar
+            el alcance de los programas y fortalecer los vínculos con la comunidad.
+          </p>
         </div>
       </section>
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="space-y-6">
-            <article className="flex flex-col md:flex-row gap-6 bg-sand-50 rounded-2xl border border-fudap-100 overflow-hidden shadow-soft">
-              <div className="md:w-64 lg:w-80 aspect-video md:aspect-auto img-placeholder flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80" alt="[Placeholder proyecto]" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="p-6 flex flex-col justify-center">
-                <span className="text-xs font-semibold text-fudap-500 uppercase tracking-wide mb-2">En curso</span>
-                <h2 className="font-display text-xl font-bold text-fudap-900 mb-2">[Nombre del proyecto]</h2>
-                <p className="text-fudap-600 text-sm leading-relaxed mb-4">Descripción breve del proyecto, objetivos y población destinataria. Placeholder para contenido real de FUDAP.</p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-fudap-100 text-fudap-700 px-2.5 py-1 rounded-full">Rehabilitación</span>
-                  <span className="text-xs bg-fudap-100 text-fudap-700 px-2.5 py-1 rounded-full">Comunidad</span>
-                </div>
-              </div>
-            </article>
-            <article className="flex flex-col md:flex-row gap-6 bg-sand-50 rounded-2xl border border-fudap-100 overflow-hidden shadow-soft">
-              <div className="md:w-64 lg:w-80 aspect-video md:aspect-auto img-placeholder flex-shrink-0">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&q=80" alt="[Placeholder proyecto]" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="p-6 flex flex-col justify-center">
-                <span className="text-xs font-semibold text-fudap-500 uppercase tracking-wide mb-2">En curso</span>
-                <h2 className="font-display text-xl font-bold text-fudap-900 mb-2">[Nombre del proyecto]</h2>
-                <p className="text-fudap-600 text-sm leading-relaxed mb-4">Descripción breve. Completar con proyectos reales (convenios, programas especiales, alianzas).</p>
-                <div className="flex flex-wrap gap-2">
-                  <span className="text-xs bg-fudap-100 text-fudap-700 px-2.5 py-1 rounded-full">Inserción laboral</span>
-                </div>
-              </div>
-            </article>
-            <article className="flex flex-col md:flex-row gap-6 bg-sand-50 rounded-2xl border border-fudap-100 overflow-hidden shadow-soft opacity-90">
-              <div className="md:w-64 lg:w-80 aspect-video md:aspect-auto bg-fudap-200 flex-shrink-0 flex items-center justify-center">
-                <span className="text-fudap-600 text-sm font-medium">Proyecto finalizado</span>
-              </div>
-              <div className="p-6 flex flex-col justify-center">
-                <span className="text-xs font-semibold text-fudap-400 uppercase tracking-wide mb-2">Archivo</span>
-                <h2 className="font-display text-xl font-bold text-fudap-800 mb-2">[Proyecto histórico — ej. referencia a actividades pasadas]</h2>
-                <p className="text-fudap-600 text-sm leading-relaxed">Los contenidos temporales (talleres 2019, convocatorias 2021, etc.) se conservan aquí o en Actualidad → Archivo, sin saturar el menú principal.</p>
-              </div>
-            </article>
+
+      <section className="proyectos-content">
+        <div className="proyectos-container">
+          <div className="proyectos-section-heading">
+            <h2>Iniciativas que nos movilizan</h2>
+            <p>
+              Un espacio para presentar las propuestas, compartir sus avances
+              y mantener viva la memoria de las actividades institucionales.
+            </p>
           </div>
+
+          <div className="proyectos-list">
+            {proyectos.map((proyecto) => (
+              <article
+                className={`proyecto-card ${proyecto.color}`}
+                key={proyecto.id}
+              >
+                <div className="proyecto-media">
+                  {proyecto.imagen ? (
+                    <img
+                      src={proyecto.imagen}
+                      alt={proyecto.alt}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="proyecto-archive-visual">
+                      <svg
+                        viewBox="0 0 48 48"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M8 15h32v25H8zM5 8h38v7H5zM19 24h10M19 30h10"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <span>Memoria institucional</span>
+                    </div>
+                  )}
+                  {proyecto.imagen && (
+                    <span className="proyecto-image-note">
+                      Imagen ilustrativa
+                    </span>
+                  )}
+                </div>
+
+                <div className="proyecto-info">
+                  <span className="proyecto-status">
+                    <span className="proyecto-status-dot" aria-hidden="true" />
+                    {proyecto.estado}
+                  </span>
+
+                  <h3>{proyecto.titulo}</h3>
+                  <p className="proyecto-description">
+                    {proyecto.descripcion}
+                  </p>
+
+                  <div className="proyecto-tags">
+                    {proyecto.etiquetas.map((etiqueta) => (
+                      <span className="proyecto-tag" key={etiqueta}>
+                        {etiqueta}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="proyecto-pending">
+                    Contenido pendiente de validación institucional.
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <section className="proyectos-cta">
+            <div>
+              <span className="proyectos-eyebrow">Sumate</span>
+              <h2>¿Querés conocer más sobre FUDAP?</h2>
+              <p>
+                Explorá las formas de participar y colaborar con la institución.
+              </p>
+            </div>
+
+            <div className="proyectos-cta-actions">
+              <button
+                className="proyectos-button proyectos-button-secondary"
+                onClick={() => navigateTo('voluntariado')}
+              >
+                Ser voluntario/a
+              </button>
+              <button
+                className="proyectos-button proyectos-button-primary"
+                onClick={() => navigateTo('donaciones')}
+              >
+                Colaborar
+              </button>
+            </div>
+          </section>
         </div>
       </section>
-    </>
+    </main>
   );
 }

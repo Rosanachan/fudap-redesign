@@ -1,104 +1,344 @@
-export default function Voluntariado({ actions }) {
+
+import React from "react";
+
+export default function Voluntariado({ actions = {} }) {
   const { navigateTo, handleVolForm } = actions;
+
+  const pasos = [
+    {
+      numero: "01",
+      titulo: "Completá el formulario",
+      descripcion:
+        "Contanos quién sos, cuáles son tus intereses y de qué manera te gustaría colaborar.",
+    },
+    {
+      numero: "02",
+      titulo: "Entrevista de orientación",
+      descripcion:
+        "Nos pondremos en contacto para conocerte, conversar sobre tus motivaciones y responder tus preguntas.",
+    },
+    {
+      numero: "03",
+      titulo: "Incorporación y acompañamiento",
+      descripcion:
+        "Buscaremos el espacio de participación más adecuado para vos y te acompañaremos durante el proceso.",
+    },
+  ];
+
+  const areas = [
+    {
+      titulo: "Acompañamiento comunitario",
+      descripcion:
+        "Colaboración en propuestas y actividades orientadas a la comunidad.",
+      color: "turquesa",
+    },
+    {
+      titulo: "Actividades y talleres",
+      descripcion:
+        "Apoyo en la organización y el desarrollo de encuentros y actividades.",
+      color: "verde",
+    },
+    {
+      titulo: "Comunicación y difusión",
+      descripcion:
+        "Colaboración con contenidos, campañas y difusión de las iniciativas.",
+      color: "coral",
+    },
+    {
+      titulo: "Organización y apoyo institucional",
+      descripcion:
+        "Participación en tareas de organización, eventos y otras necesidades de la institución.",
+      color: "turquesa",
+    },
+  ];
+
+  const irA = (destino) => {
+    if (typeof navigateTo === "function") {
+      navigateTo(destino);
+    }
+  };
+
+  const enviarFormulario = (event) => {
+    event.preventDefault();
+
+    if (typeof handleVolForm === "function") {
+      handleVolForm(event);
+    }
+  };
+
   return (
-    <>
-<section className="bg-fudap-50 border-b border-fudap-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-          <nav className="text-sm text-fudap-500 mb-4" aria-label="Breadcrumb">
-            <button onClick={() => navigateTo('inicio')} className="hover:text-fudap-700">Inicio</button>
-            <span className="mx-2">/</span>
-            <span className="text-fudap-700">Participá</span>
-            <span className="mx-2">/</span>
-            <span className="text-fudap-800 font-medium">Voluntariado</span>
+    <main className="voluntariado-page">
+      <section className="voluntariado-hero">
+        <div className="voluntariado-container">
+          <nav className="voluntariado-breadcrumb" aria-label="Ruta de navegación">
+            <button type="button" onClick={() => irA("inicio")}>
+              Inicio
+            </button>
+            <span aria-hidden="true">/</span>
+            <span>Voluntariado</span>
           </nav>
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-fudap-900 mb-4">Voluntariado</h1>
-          <p className="text-lg text-fudap-600 max-w-2xl">Sumá tu tiempo y compromiso. El voluntariado es una forma concreta de sostener el acompañamiento cotidiano.</p>
-        </div>
-      </section>
 
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-5 gap-12">
-            <div className="lg:col-span-3">
-              <h2 className="font-display text-2xl font-bold text-fudap-900 mb-4">¿Cómo funciona?</h2>
-              <ol className="space-y-6 mb-10">
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-9 h-9 rounded-full bg-fudap-600 text-white flex items-center justify-center text-sm font-bold">1</span>
-                  <div>
-                    <h3 className="font-semibold text-fudap-900">Completá el formulario</h3>
-                    <p className="text-sm text-fudap-600 mt-1">Contanos sobre vos, tu disponibilidad y áreas de interés.</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-9 h-9 rounded-full bg-fudap-600 text-white flex items-center justify-center text-sm font-bold">2</span>
-                  <div>
-                    <h3 className="font-semibold text-fudap-900">Entrevista de orientación</h3>
-                    <p className="text-sm text-fudap-600 mt-1">El equipo te contactará para conocer tu perfil y acordar tareas posibles.</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <span className="flex-shrink-0 w-9 h-9 rounded-full bg-fudap-600 text-white flex items-center justify-center text-sm font-bold">3</span>
-                  <div>
-                    <h3 className="font-semibold text-fudap-900">Incorporación y acompañamiento</h3>
-                    <p className="text-sm text-fudap-600 mt-1">Te integramos a las actividades con inducción y referente de seguimiento.</p>
-                  </div>
-                </li>
-              </ol>
+          <div className="voluntariado-hero-content">
+            <span className="voluntariado-eyebrow">
+              Participá con FUDAP
+            </span>
 
-              <h2 className="font-display text-xl font-bold text-fudap-900 mb-3">Áreas frecuentes de voluntariado</h2>
-              <div className="flex flex-wrap gap-2 mb-8">
-                <span className="bg-fudap-50 border border-fudap-100 text-fudap-700 text-sm px-3 py-1.5 rounded-full">Acompañamiento en talleres</span>
-                <span className="bg-fudap-50 border border-fudap-100 text-fudap-700 text-sm px-3 py-1.5 rounded-full">Apoyo administrativo</span>
-                <span className="bg-fudap-50 border border-fudap-100 text-fudap-700 text-sm px-3 py-1.5 rounded-full">Comunicación y redes</span>
-                <span className="bg-fudap-50 border border-fudap-100 text-fudap-700 text-sm px-3 py-1.5 rounded-full">Actividades recreativas</span>
-                <span className="bg-fudap-50 border border-fudap-100 text-fudap-700 text-sm px-3 py-1.5 rounded-full">Eventos solidarios</span>
-                <span className="bg-fudap-50 border border-fudap-100 text-fudap-700 text-sm px-3 py-1.5 rounded-full">[Otras áreas]</span>
-              </div>
-              <p className="text-xs text-fudap-400">[Ajustar áreas y requisitos según política real de voluntariado de FUDAP]</p>
-            </div>
+            <h1>
+              Tu compromiso puede
+              <span> generar un cambio.</span>
+            </h1>
 
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <div className="bg-sand-50 rounded-2xl border border-fudap-100 p-6 md:p-8 shadow-soft sticky top-24">
-                <h2 className="font-display text-xl font-bold text-fudap-900 mb-1">Postulate</h2>
-                <p className="text-sm text-fudap-500 mb-6">Formulario de interés en voluntariado</p>
-                <form id="form-voluntariado" className="space-y-4" onSubmit={handleVolForm}>
-                  <div>
-                    <label htmlFor="vol-nombre" className="block text-sm font-medium text-fudap-700 mb-1">Nombre y apellido *</label>
-                    <input type="text" id="vol-nombre" required className="form-input focus-ring w-full px-4 py-2.5 rounded-xl border border-fudap-200 bg-white text-sm" placeholder="Tu nombre" />
-                  </div>
-                  <div>
-                    <label htmlFor="vol-email" className="block text-sm font-medium text-fudap-700 mb-1">Email *</label>
-                    <input type="email" id="vol-email" required className="form-input focus-ring w-full px-4 py-2.5 rounded-xl border border-fudap-200 bg-white text-sm" placeholder="correo@ejemplo.com" />
-                  </div>
-                  <div>
-                    <label htmlFor="vol-tel" className="block text-sm font-medium text-fudap-700 mb-1">Teléfono</label>
-                    <input type="tel" id="vol-tel" className="form-input focus-ring w-full px-4 py-2.5 rounded-xl border border-fudap-200 bg-white text-sm" placeholder="+54 ..." />
-                  </div>
-                  <div>
-                    <label htmlFor="vol-area" className="block text-sm font-medium text-fudap-700 mb-1">Área de interés</label>
-                    <select id="vol-area" className="form-input focus-ring w-full px-4 py-2.5 rounded-xl border border-fudap-200 bg-white text-sm">
-                      <option value="">Seleccionar...</option>
-                      <option>Talleres y acompañamiento</option>
-                      <option>Administración</option>
-                      <option>Comunicación</option>
-                      <option>Eventos</option>
-                      <option>Otra</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="vol-msg" className="block text-sm font-medium text-fudap-700 mb-1">Contanos brevemente</label>
-                    <textarea id="vol-msg" rows="3" className="form-input focus-ring w-full px-4 py-2.5 rounded-xl border border-fudap-200 bg-white text-sm resize-none" placeholder="Disponibilidad, experiencia, motivación..."></textarea>
-                  </div>
-                  <button type="submit" className="btn-primary focus-ring w-full text-white font-medium py-3 rounded-full text-sm">Enviar postulación</button>
-                  <p id="vol-success" className="hidden text-sm text-fudap-600 text-center bg-fudap-50 rounded-lg py-2">¡Gracias! Te contactaremos a la brevedad. (Prototipo — sin envío real)</p>
-                  <p className="text-[11px] text-fudap-400 text-center">Al enviar aceptás ser contactado/a por FUDAP. [Vincular a política de privacidad]</p>
-                </form>
-              </div>
-            </div>
+            <p>
+              Sumate a nuestra comunidad de voluntariado y colaborá con
+              iniciativas que promueven el bienestar, la inclusión y el
+              acompañamiento comunitario.
+            </p>
+
+            <button
+              type="button"
+              className="voluntariado-button voluntariado-button-primary"
+              onClick={() =>
+                document
+                  .getElementById("form-voluntariado")
+                  ?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+            >
+              Quiero ser voluntario/a
+              <span aria-hidden="true"> →</span>
+            </button>
+          </div>
+
+          <div className="voluntariado-hero-decoration" aria-hidden="true">
+            <span className="voluntariado-decoration-circle" />
+            <span className="voluntariado-decoration-line" />
           </div>
         </div>
       </section>
-    </>
-);
+
+      <section className="voluntariado-intro">
+        <div className="voluntariado-container voluntariado-intro-grid">
+          <div>
+            <span className="voluntariado-eyebrow">
+              Formar parte
+            </span>
+            <h2>Hay muchas formas de colaborar</h2>
+          </div>
+
+          <p>
+            El voluntariado es una oportunidad para compartir conocimientos,
+            aportar tiempo y construir vínculos. Queremos conocer tus
+            intereses para explorar juntos cómo podés participar.
+          </p>
+        </div>
+      </section>
+
+      <section className="voluntariado-areas">
+        <div className="voluntariado-container">
+          <div className="voluntariado-section-heading">
+            <span className="voluntariado-eyebrow">
+              ¿Dónde podés participar?
+            </span>
+            <h2>Encontrá tu forma de sumar</h2>
+            <p>
+              Estas son algunas áreas posibles de colaboración. Las
+              oportunidades concretas deben coordinarse con el equipo de FUDAP.
+            </p>
+          </div>
+
+          <div className="voluntariado-areas-grid">
+            {areas.map((area) => (
+              <article
+                className={`voluntariado-area-card voluntariado-area-${area.color}`}
+                key={area.titulo}
+              >
+                <span
+                  className="voluntariado-area-mark"
+                  aria-hidden="true"
+                />
+
+                <h3>{area.titulo}</h3>
+                <p>{area.descripcion}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="voluntariado-proceso">
+        <div className="voluntariado-container">
+          <div className="voluntariado-section-heading">
+            <span className="voluntariado-eyebrow">
+              ¿Cómo empezar?
+            </span>
+            <h2>Un proceso para conocernos</h2>
+            <p>
+              Queremos que tu experiencia de voluntariado sea clara,
+              acompañada y acorde a tus posibilidades.
+            </p>
+          </div>
+
+          <div className="voluntariado-steps-grid">
+            {pasos.map((paso) => (
+              <article className="voluntariado-step" key={paso.numero}>
+                <span className="voluntariado-step-number">
+                  {paso.numero}
+                </span>
+                <h3>{paso.titulo}</h3>
+                <p>{paso.descripcion}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="voluntariado-form-section" id="form-voluntariado">
+        <div className="voluntariado-container voluntariado-form-grid">
+          <div className="voluntariado-form-copy">
+            <span className="voluntariado-eyebrow">
+              Sumate a FUDAP
+            </span>
+
+            <h2>Contanos un poco sobre vos</h2>
+
+            <p>
+              Completá el formulario y dejanos tus datos para que podamos
+              conocer tus intereses y conversar sobre posibles formas de
+              participación.
+            </p>
+
+            <div className="voluntariado-form-note">
+              <span aria-hidden="true">✓</span>
+              <p>
+                No necesitás tener todas las respuestas. Lo importante es
+                que nos cuentes qué te motiva a participar.
+              </p>
+            </div>
+          </div>
+
+          <form
+            id="form-voluntariado"
+            className="voluntariado-form"
+            onSubmit={enviarFormulario}
+          >
+            <div className="voluntariado-field">
+              <label htmlFor="vol-nombre">Nombre y apellido *</label>
+              <input
+                id="vol-nombre"
+                name="nombre"
+                type="text"
+                placeholder="Tu nombre completo"
+                autoComplete="name"
+                required
+              />
+            </div>
+
+            <div className="voluntariado-field">
+              <label htmlFor="vol-email">Correo electrónico *</label>
+              <input
+                id="vol-email"
+                name="email"
+                type="email"
+                placeholder="nombre@correo.com"
+                autoComplete="email"
+                required
+              />
+            </div>
+
+            <div className="voluntariado-field">
+              <label htmlFor="vol-tel">Teléfono</label>
+              <input
+                id="vol-tel"
+                name="telefono"
+                type="tel"
+                placeholder="Tu número de contacto"
+                autoComplete="tel"
+              />
+            </div>
+
+            <div className="voluntariado-field">
+              <label htmlFor="vol-area">
+                ¿En qué área te gustaría colaborar?
+              </label>
+              <select id="vol-area" name="area" defaultValue="">
+                <option value="" disabled>
+                  Seleccioná un área
+                </option>
+                <option value="comunitaria">
+                  Acompañamiento comunitario
+                </option>
+                <option value="talleres">
+                  Actividades y talleres
+                </option>
+                <option value="comunicacion">
+                  Comunicación y difusión
+                </option>
+                <option value="institucional">
+                  Organización y apoyo institucional
+                </option>
+                <option value="otra">Otra / A conversar</option>
+              </select>
+            </div>
+
+            <div className="voluntariado-field">
+              <label htmlFor="vol-msg">
+                ¿Querés contarnos algo más?
+              </label>
+              <textarea
+                id="vol-msg"
+                name="mensaje"
+                rows="4"
+                placeholder="Contanos tus intereses, experiencia o disponibilidad..."
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="voluntariado-button voluntariado-button-primary voluntariado-submit"
+            >
+              Enviar formulario
+              <span aria-hidden="true"> →</span>
+            </button>
+
+            <p
+              id="vol-success"
+              className="voluntariado-success hidden"
+              role="status"
+              aria-live="polite"
+            >
+              ¡Gracias por tu interés en participar!
+            </p>
+
+            <p className="voluntariado-form-disclaimer">
+              Formulario de demostración: la recepción efectiva de los datos
+              depende de que el envío esté conectado a un servicio o backend.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section className="voluntariado-contact-cta">
+        <div className="voluntariado-container voluntariado-contact-inner">
+          <div>
+            <span className="voluntariado-eyebrow">
+              ¿Tenés alguna consulta?
+            </span>
+            <h2>Estamos para escucharte</h2>
+            <p>
+              Si querés conocer más sobre el voluntariado, podés comunicarte
+              con FUDAP.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className="voluntariado-button voluntariado-button-outline"
+            onClick={() => irA("contacto")}
+          >
+            Contactar a FUDAP
+            <span aria-hidden="true"> →</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
 }

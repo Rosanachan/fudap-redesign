@@ -58,14 +58,22 @@ export default function App() {
   const selectDonate = (btn, amount) => { document.querySelectorAll('.donate-option').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); const input=document.getElementById('donate-custom'); if(input) input.value=''; };
   const clearDonateSelection = () => document.querySelectorAll('.donate-option').forEach(b => b.classList.remove('selected'));
   const handleDonate = () => document.getElementById('donate-msg')?.classList.remove('hidden');
-  const filterNews = (cat) => {
-    document.querySelectorAll('.news-filter').forEach(btn => {
-      const active = btn.getAttribute('data-filter') === cat;
-      btn.classList.toggle('bg-fudap-700', active); btn.classList.toggle('text-white', active);
-      btn.classList.toggle('bg-fudap-50', !active); btn.classList.toggle('text-fudap-700', !active);
-    });
-    document.querySelectorAll('.news-item').forEach(item => { item.style.display = cat === 'all' || item.getAttribute('data-cat') === cat ? '' : 'none'; });
-  };
+  
+const filterNews = (cat) => {
+  document.querySelectorAll('.news-filter').forEach((btn) => {
+    const active = btn.getAttribute('data-filter') === cat;
+
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
+  });
+
+  document.querySelectorAll('.news-item').forEach((item) => {
+    const visible =
+      cat === 'all' || item.getAttribute('data-cat') === cat;
+
+    item.style.display = visible ? '' : 'none';
+  });
+};
 
   useEffect(() => {
     const onHash = () => setPage(pageMap[location.hash.replace('#','')] ? location.hash.replace('#','') : 'inicio');
